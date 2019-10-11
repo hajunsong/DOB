@@ -89,10 +89,10 @@ void DOB::run(double *q, double *q_dot, double *tor, int *collision_flag)
 
     FILE *fp;
     if (t_current == 0){
-        fp = fopen("/home/hajun/Project/DOB_1dof/analysis_result_c.txt", "w+");
+        fp = fopen("D:/DD/Desktop/DOB_qt/analysis_result_c.txt", "w+");
     }
     else{
-        fp = fopen("/home/hajun/Project/DOB_1dof/analysis_result_c.txt", "a+");
+        fp = fopen("D:/DD/Desktop/DOB_qt/analysis_result_c.txt", "a+");
     }
 
     fprintf(fp, "%3.7f\t%7.7f\t%7.7f\t%7.7f\t%7.7f\t%7.7f\n", t_current, body[0].qi, body[1].ri[0], body[1].ri[1], body[1].ri[2], body[0].r_hat);

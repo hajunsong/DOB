@@ -16,7 +16,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         dob.cpp \
-        main.cpp
+        main.cpp \
+        RobotArm/robotarm.cpp \
+        Numerical/numerical.cpp \
+        FileIO/fileio.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -24,4 +27,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    dob.h
+    dob.h \
+    RobotArm/robotarm.h \
+    Numerical/numerical.h \
+    FileIO/fileio.h

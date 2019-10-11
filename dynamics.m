@@ -129,7 +129,7 @@ function dynamics
 %     F5c = [0;m5*g;0];
 %     F6c = [0;m6*g;0];
 
-    T1c = [0;1;0];
+    T1c = [0;0;0];
     T2c = [0;0;0];
 %     T3c = [0;0;0];
 %     T4c = [0;0;0];
@@ -186,7 +186,7 @@ function dynamics
     
     Q_g = B1'*(L1_g - K1*D1);
     Q_c = B1'*(L1_c - K1*D1);
-    Ta = 2;
+    Ta = 0;
     Q = Ta + Q_g + Q_c;
     
     q_ddot = M\Q;

@@ -16,6 +16,7 @@ function read_parameter
     C01 = ang2mat(pi, pi/2, pi/2, 0);
     
     global q1 dq1 rho1p s12p J1p C12 m1 C11
+    
     q1 = 0;
     dq1 = 0;
     m1 = 1.15828469407282;

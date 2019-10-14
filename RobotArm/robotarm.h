@@ -20,6 +20,8 @@ public:
     void run_kinematics();
     void run_inverse_kinematics();
     void run_dynamics();
+    void run_dynamics_with_DOB();
+    void run_dynamics_with_DOB(double *qi, double *qi_dot, double *Ta);
 #endif
     void run_kinematics(double *q, double *pose);
     void run_inverse_kinematics(double* cur_joint, double* des_pose, double* res_joint, double* res_pose);
@@ -37,11 +39,9 @@ private:
         Body();
         Body(double psi, double theta, double phi, double sijp_x, double sijp_y, double sijp_z);
         ~Body();
-        // base body information
-        double A0[9], C01[9], s01p[3], J0p[9], r0[3], m0, A0_C01[9], C01_A01pp[9];
         // body initial data
         double qi, qi_dot, mi, qi_init;
-        double ri[3], ri_dot[3], wi[3], rhoip[3], sijp[3], Jip[9], Cii[9], Cij[9], Ai_Cij[9], Cij_Aijpp[9];
+        double ri[3], ri_dot[3], wi[3], rhoip[3], sijp[3], Jip[9], Cii[9], Cij[9], Ai_Cij[9], Cij_Aijpp[9], Ai_Cii[9];
         // Orientation
         double Aijpp[9], Ai[9], Hi[3], u_vec[3];
         // Position
@@ -63,6 +63,8 @@ private:
         double Ki[36], Li[6], Li_g[6], Li_c[6];
         // Acceleration
         double qi_ddot;
+        // DOB residual
+        double y, yp, Ta, r_hat, K, p_linear, p_rotate, p, y_old, yp_old, alpha;
 
         static void ang2mat(double ang_z1, double ang_x, double ang_z2, double* mat, bool deg_flag = true);
     };
@@ -75,6 +77,9 @@ private:
     // system variable
     double start_time, end_time, h, t_current;
     double g;
+
+    // EQM Mass & Force
+    double M, Q_g, Q_c, Q;
 
     // file
     char file_name[256];
@@ -91,6 +96,8 @@ private:
     void inverse_kinematics(double pos_d[3], double ori_d[3]=nullptr);
         void jacobian();
     void dynamics();
+    void systemEQM();
+    void residual();
 
     void save_data();
 };

@@ -30,27 +30,29 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
     vector<double> q_data;
-//    load_data("D:/DD/Desktop/DOB_qt/recurdyn_result_collision.txt", &q_data, "\t");
+    load_data("/home/hajun/Desktop/DOB/recurdyn_result_collision.txt", &q_data, "\t");
 
     uint row = 2001, col = 8;
 
-    DOB *dob = new DOB(1, 1);
+//    DOB *dob = new DOB(1, 1);
 
     double qi, qi_dot, Ta;
     int collision = 0;
+    RobotArm robot(2, 1);
 
-//    for(uint indx = 0; indx < row; indx++){
-//        qi = q_data[indx*col + 2];
-//        qi_dot = q_data[indx*col + 6];
-//        Ta = 1;
+    for(uint indx = 0; indx < row; indx++){
+        qi = q_data[indx*col + 2];
+        qi_dot = q_data[indx*col + 6];
+        Ta = 2;
+
+    //    robot.run_dynamics();
+        robot.run_dynamics_with_DOB(&qi, &qi_dot, &Ta);
 
 //        dob->run(&qi, &qi_dot, &Ta, &collision);
-//    }
+    }
 
-    RobotArm robot(2, 1);
-    robot.run_dynamics();
+//    delete dob;
 
-    delete dob;
-
-    return a.exec();
+//    return a.exec();
+    return 0;
 }
